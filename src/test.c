@@ -1,11 +1,32 @@
-#include "LinkedList.h"
+#include <stdio.h>  
+#include "LinkedList.h"  
+#include "Node.h"
 
-/*
-    @author:    func
-    @brief:     ç¼–å†™æµ‹è¯•å‡½æ•°çš„åœ°æ–¹, æµ‹è¯•è‡ªå·±å†™çš„åŠŸèƒ½æ— è¯¯, æ¯ä¸ªæ“ä½œéƒ½éœ€è¦å†™ä¸€ä¸ªæµ‹è¯•å‡½æ•°
-*/
+int main() {
+    DoublyLinkedList* list = create_list();
 
-int main(){
+    push_front(list, 1);
+    push_front(list, 2);
+    push_back(list, 3);
+    push_back(list, 4);
 
+    printf("Ìí¼Ó½ÚµãºóµÄÁ´±í");
+    printList(list);
+
+    printf("É¾³ı½Úµã2\n");
+    deleteNode(list, 2);
+    printf("É¾³ı½ÚµãºóµÄÁ´±í£º");
+    printList(list);
+
+    Node* found = find(list, 3);
+    if (found) {
+        printf("ÕÒµ½Êı¾İÎª%dµÄ½Úµã\n", found->data);
+    }
+    else {
+        printf("Ã»ÓĞÕÒµ½ÏàÓ¦µÄ½Úµã\n");
+    }
+
+    destoryList(list);
     return 0;
 }
+
