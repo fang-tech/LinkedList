@@ -4,6 +4,58 @@
     @author:    func
     @brief:     ç¼–å†™æµ‹è¯•å‡½æ•°çš„åœ°æ–¹, æµ‹è¯•è‡ªå·±å†™çš„åŠŸèƒ½æ— è¯¯, æ¯ä¸ªæ“ä½œéƒ½éœ€è¦å†™ä¸€ä¸ªæµ‹è¯•å‡½æ•°
 */
+void test_deleteNode()
+{
+    Node* head = NULL;
+
+    push_back(&head, 1);
+    push_back(&head, 2);
+    push_back(&head, 3);
+    printf("---------------------------------------------\n");
+    printf("²âÊÔÉ¾³ý½ÚµãµÄ¹¦ÄÜ\n");
+    printf("Êä³öÔ­Ê¼Á´±í£º\n");
+    printList(head);
+    printf("×´¿ö1£ºÉ¾³ýµÄ½ÚµãÊýÐ¡ÓÚ1\n");
+    deleteNode(&head, -1);
+    printf("×´¿ö2£ºÉ¾³ýÈÎÒâ½Úµã£¬ÈçÉ¾³ý2ºÅ½Úµã\n");
+    deleteNode(&head, 2);
+    printf("ÐÞ¸ÄºóµÄÁ´±í:\n");
+    printList(head);
+    printf("×´¿ö3£ºÉ¾³ýÊ×½Úµã\n");
+    deleteNode(&head, 0);
+    printList(head);
+}
+
+void test_findNode(void) {
+    Node* head = NULL;
+    push_back(&head, 10);
+    push_back(&head, 20);
+    push_back(&head, 30);
+
+    printf("---------------------------------------------\n");
+    printf("²âÊÔ²éÕÒ½ÚµãµÄ¹¦ÄÜ\n");
+    printf("Êä³öÔ­Ê¼Á´±í£º\n");
+    printList(head);
+
+    printf("×´¿ö1£º²éÕÒÄÜ¹»ÕÒµ½µÄÔªËØ£¬Èç²éÕÒ20\n");
+    Node* current_1 = find(head, 20);
+    if (current_1 != NULL) {
+        printf("Êä³ö²éÕÒµ½µÄ½ÚµãµÄÊý×Ö: %d\n", current_1->data);
+    }
+    else {
+        printf("Î´ÕÒµ½ÔªËØ20¡£\n");
+    }
+
+    printf("×´¿ö2£º²éÕÒ²»ÄÜÕÒµ½µÄÔªËØ£¬Èç²éÕÒ40\n");
+    Node* current_2 = find(head, 40);
+    if (current_2 != NULL) {
+        printf("Êä³ö²éÕÒµ½µÄ½ÚµãµÄÊý×Ö: %d\n", current_2->data);
+    }
+    else {
+        printf("Î´ÕÒµ½ÔªËØ40¡£\n");
+    }
+    printf("------------------------------------------------\n");
+}
 void test_printList() {
     Node* head = NULL;
 
@@ -36,6 +88,8 @@ void test_destroyList() {
 }
 
 int main(){
+    test_deleteNode();
+    test_findNode();
     test_printList();
     test_destroyList();
 
