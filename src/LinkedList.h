@@ -19,10 +19,68 @@ int push_front(Node** head, int data);
 int push_back(Node** head, int data);
 
 // åˆ é™¤indexä½ç½®çš„èŠ‚ç‚¹
-void deleteNode(Node** head, int index);
+void deleteNode(Node** head, int index) 
+{
+    if (head == NULL || *head == NULL) {
+        printf("Á´±íÎª¿Õ£¬ÎŞ·¨É¾³ı½Úµã¡£\n");
+        return;
+    }
+
+    if (index < 0) {
+        printf("½áµãÊı²»Ó¦Ğ¡ÓÚ0,ÇëÊäÈëÕıÈ·½áµãÊı¡£\n");
+        return;
+    }
+
+    Node* current = *head;
+
+    // ±éÀúµ½Ö¸¶¨Ë÷Òı  
+    for (int i = 0; i < index; i++) {
+        if (current == NULL) {
+            printf("Ë÷Òı³¬³öÁ´±í·¶Î§¡£\n");
+            return;
+        }
+        current = current->next;
+    }
+
+    // Èç¹ûµ±Ç°½ÚµãÎªNULL£¬±íÊ¾Ë÷Òı³¬³ö·¶Î§  
+    if (current == NULL) {
+        printf("Ë÷Òı³¬³öÁ´±í·¶Î§¡£\n");
+        return;
+    }
+
+    // É¾³ı½Úµã  
+    if (current == *head) {
+        // É¾³ıÍ·½Úµã  
+        *head = current->next;
+        if (*head != NULL) {
+            (*head)->prev = NULL; // ¸üĞÂĞÂµÄÍ·½ÚµãµÄprevÖ¸Õë  
+        }
+    }
+    else {
+        // Á¬½ÓÇ°ºó½Úµã  
+        if (current->next != NULL) {
+            current->next->prev = current->prev;
+        }
+        current->prev->next = current->next;
+    }
+
+    free(current); // ÊÍ·Å½ÚµãÄÚ´æ  
+}
 
 // æŸ¥æ‰¾èŠ‚ç‚¹ (æŒ‰å€¼æŸ¥æ‰¾), è¿”å›èŠ‚ç‚¹ä½ç½®, å¦‚æœæ²¡æ‰¾åˆ°, è¿”å›ä¸ºç©º
-Node* find(Node* head, int data);
+Node* find(Node* head, int data)
+{
+    Node* current = head;
+    while (current != NULL)
+    {
+        if (current->data == data)
+        {
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
+}
 
 // éå†é“¾è¡¨
 void printList(Node* head) {
