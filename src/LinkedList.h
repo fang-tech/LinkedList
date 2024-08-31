@@ -13,10 +13,39 @@
 //-------------------------  基础操作集   -------------------------
 
 // 头插法插入元素
-int push_front(Node** head, int data);
+int push_front(Node** head, int data){
+     Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->prev = NULL;
+    newNode->next = *head;
+    if (*head != NULL)
+    {
+        (*head)->prev = newNode;
+    }
+    *head = newNode;
+    return 0;
+}
 
 // 尾插法插入元素
-int push_back(Node** head, int data);
+int push_back(Node** head, int data){
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    if (*head == NULL)
+    {
+        newNode->prev = NULL;
+        *head = newNode;
+        return 0;
+    }
+    Node *tail = *head;
+    while (tail->next)
+    {
+        tail = tail->next;
+    }
+    tail->next = newNode;
+    newNode->prev = tail;
+    return 0;
+}
 
 // 删除index位置的节点
 void deleteNode(Node** head, int index) 
@@ -81,12 +110,28 @@ Node* find(Node* head, int data)
     }
     return NULL;
 }
-// 遍历链表
-void printList(Node* head);
+void printList(Node* head) {
+    Node* temp = head;
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
 
 // 销毁链表
-void destroyList(Node** head);
+void destroyList(Node** head) {
+    Node* current = *head;
+    Node* next_node;
 
+    while (current != NULL) {
+        next_node = current->next;
+        free(current);
+        current = next_node;
+    }
+
+    *head = NULL;
+}
 //-------------------------  基础操作集   -------------------------
 
 
