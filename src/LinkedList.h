@@ -110,6 +110,8 @@ Node* find(Node* head, int data)
     }
     return NULL;
 }
+
+// 遍历链表
 void printList(Node* head) {
     Node* temp = head;
     while (temp != NULL) {

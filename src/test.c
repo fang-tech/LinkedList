@@ -57,8 +57,43 @@ void test_findNode(void) {
     }
     printf("------------------------------------------------\n");
 }
+
+
+void test_printList() {
+    Node* head = NULL;
+
+    push_back(&head, 10);
+    push_back(&head, 20);
+    push_back(&head, 30);
+
+    printf("Testing printList...\n");
+
+    printList(head); // 应该输出 10 20 30
+
+    destroyList(&head);
+}
+
+void test_destroyList() {
+    Node* head = NULL;
+
+    push_back(&head, 10);
+    push_back(&head, 20);
+    push_back(&head, 30);
+
+    printf("Testing destroyList...\n");
+
+    destroyList(&head);
+    if (head == NULL) {
+        printf("List successfully destroyed.\n");
+    } else {
+        printf("List not destroyed properly.\n");
+    }
+}
 int main(){
     test_deleteNode();
     test_findNode();
+    test_printList();
+    test_destroyList();
+    
     return 0;
 }
