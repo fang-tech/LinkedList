@@ -25,28 +25,11 @@ void deleteNode(Node** head, int index);
 Node* find(Node* head, int data);
 
 // 遍历链表
-void printList(Node* head) {
-    Node* temp = head;
-    while (temp != NULL) {
-        printf("%d ", temp->data);
-        temp = temp->next;
-    }
-    printf("\n");
-}
+void printList(Node* head);
 
 // 销毁链表
-void destroyList(Node** head) {
-    Node* current = *head;
-    Node* next_node;
+void destroyList(Node** head);
 
-    while (current != NULL) {
-        next_node = current->next;
-        free(current);
-        current = next_node;
-    }
-
-    *head = NULL;
-}
 //-------------------------  基础操作集   -------------------------
 
 
