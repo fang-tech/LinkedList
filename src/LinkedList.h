@@ -19,11 +19,68 @@ int push_front(Node** head, int data);
 int push_back(Node** head, int data);
 
 // 删除index位置的节点
-void deleteNode(Node** head, int index);
+void deleteNode(Node** head, int index) 
+{
+    if (head == NULL || *head == NULL) {
+        printf("链表为空，无法删除节点。\n");
+        return;
+    }
+
+    if (index < 0) {
+        printf("结点数不应小于0,请输入正确结点数。\n");
+        return;
+    }
+
+    Node* current = *head;
+
+    // 遍历到指定索引  
+    for (int i = 0; i < index; i++) {
+        if (current == NULL) {
+            printf("索引超出链表范围。\n");
+            return;
+        }
+        current = current->next;
+    }
+
+    // 如果当前节点为NULL，表示索引超出范围  
+    if (current == NULL) {
+        printf("索引超出链表范围。\n");
+        return;
+    }
+
+    // 删除节点  
+    if (current == *head) {
+        // 删除头节点  
+        *head = current->next;
+        if (*head != NULL) {
+            (*head)->prev = NULL; // 更新新的头节点的prev指针  
+        }
+    }
+    else {
+        // 连接前后节点  
+        if (current->next != NULL) {
+            current->next->prev = current->prev;
+        }
+        current->prev->next = current->next;
+    }
+
+    free(current); // 释放节点内存  
+}
 
 // 查找节点 (按值查找), 返回节点位置, 如果没找到, 返回为空
-Node* find(Node* head, int data);
-
+Node* find(Node* head, int data)
+{
+    Node* current = head;
+    while (current != NULL)
+    {
+        if (current->data == data)
+        {
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
+}
 // 遍历链表
 void printList(Node* head);
 
