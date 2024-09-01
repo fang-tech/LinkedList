@@ -5,10 +5,33 @@
     @brief:     编写测试函数的地方, 测试自己写的功能无误, 每个操作都需要写一个测试函数
 */
 
+void test_push_front()
+{
+    push_front(&head1, 1);
+    push_back(&head1, 2);
+    push_back(&head1, 3);
+    printf("应该输出 3 2 1\n");
+    printf("实际输出 \n");
+    printList(head1);
+
+    destroyList(&head1);
+}
+
+void test_push_back()
+{
+    push_front(&head1, 1);
+    push_back(&head1, 2);
+    push_back(&head1, 3);
+    printf("应该输出 1 2 3\n");
+    printf("实际输出 \n");
+    printList(head1);
+
+    destroyList(&head1);
+}
+
 void test_deleteNode()
 {
-    Node* head = NULL;
-
+    Node *head = NULL;
     push_back(&head, 1);
     push_back(&head, 2);
     push_back(&head, 3);
@@ -27,8 +50,9 @@ void test_deleteNode()
     printList(head);
 }
 
-void test_findNode(void) {
-    Node* head = NULL;
+void test_findNode(void)
+{
+    Node *head = NULL;
     push_back(&head, 10);
     push_back(&head, 20);
     push_back(&head, 30);
@@ -39,28 +63,32 @@ void test_findNode(void) {
     printList(head);
 
     printf("状况1：查找能够找到的元素，如查找20\n");
-    Node* current_1 = find(head, 20);
-    if (current_1 != NULL) {
+    Node *current_1 = find(head, 20);
+    if (current_1 != NULL)
+    {
         printf("输出查找到的节点的数字: %d\n", current_1->data);
     }
-    else {
+    else
+    {
         printf("未找到元素20。\n");
     }
 
     printf("状况2：查找不能找到的元素，如查找40\n");
-    Node* current_2 = find(head, 40);
-    if (current_2 != NULL) {
+    Node *current_2 = find(head, 40);
+    if (current_2 != NULL)
+    {
         printf("输出查找到的节点的数字: %d\n", current_2->data);
     }
-    else {
+    else
+    {
         printf("未找到元素40。\n");
     }
     printf("------------------------------------------------\n");
 }
 
-
-void test_printList() {
-    Node* head = NULL;
+void test_printList()
+{
+    Node *head = NULL;
 
     push_back(&head, 10);
     push_back(&head, 20);
@@ -73,8 +101,9 @@ void test_printList() {
     destroyList(&head);
 }
 
-void test_destroyList() {
-    Node* head = NULL;
+void test_destroyList()
+{
+    Node *head = NULL;
 
     push_back(&head, 10);
     push_back(&head, 20);
@@ -83,17 +112,38 @@ void test_destroyList() {
     printf("Testing destroyList...\n");
 
     destroyList(&head);
-    if (head == NULL) {
+    if (head == NULL)
+    {
         printf("List successfully destroyed.\n");
-    } else {
+    }
+    else
+    {
         printf("List not destroyed properly.\n");
     }
 }
-int main(){
+
+void test_revers_List()
+{
+    push_front(&head1, 1);
+    push_back(&head1, 2);
+    push_back(&head1, 3);
+    void revers_List(head1)
+        printf("链表反转后应该输出 3 2 1\n");
+    printf("实际输出 \n");
+    printList(head2);
+    destroyList(&head1);
+    destroyList(&head2);
+}
+
+main()
+{
+    test_push_front();
+    test_push_back();
     test_deleteNode();
     test_findNode();
     test_printList();
     test_destroyList();
-    
+    test_revers_List();
+
     return 0;
 }
