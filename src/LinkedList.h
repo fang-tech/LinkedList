@@ -3,6 +3,22 @@
 
 #include <stdio.h>
 #include "Node.h"
+#include <stdbool.h>
+
+/*
+    @author:    fung
+    @brief:     链表的进阶操作集的实现, 以及高级操作集的实现
+    @todo:      完成链表的操作集以及测试文件
+*/
+
+// 链表的反转
+void revers_List(Node* head);
+
+// 判断链表中是否有环
+bool has_circle(Node* head);
+
+// 合并有序链表, 输出新的链表, 注意输入为有序的链表, 输出链表也要是有序的, 这里规定为升序
+Node* merge_list(Node* list_1, Node* list_2);
 
 /*
     @author:    fung
@@ -112,7 +128,7 @@ Node* find(Node* head, int data)
 }
 
 // 遍历链表
-void printList(Node* head) {
+void printList(Node* head){
     Node* temp = head;
     while (temp != NULL) {
         printf("%d ", temp->data);
