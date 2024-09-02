@@ -127,15 +127,39 @@ void test_revers_List()
     push_front(&head1, 1);
     push_back(&head1, 2);
     push_back(&head1, 3);
-    void revers_List(head1)
-        printf("链表反转后应该输出 3 2 1\n");
+    revers_List(head1);
+    printf("链表反转后应该输出 3 2 1\n");
     printf("实际输出 \n");
     printList(head2);
     destroyList(&head1);
     destroyList(&head2);
 }
 
-main()
+void test_circle()
+{
+    Node* head = NULL;
+
+    push_back(&head, 10);
+    push_back(&head, 20);
+    push_back(&head, 30);
+
+    // 连接节点以创建环  
+    Node* second = head->next;   // 获取第二个节点  
+    Node* third = second->next;   // 获取第三个节点  
+
+    // 创建环  
+    third->next = second; // 使链表形成环  
+
+    if (has_circle(head))
+     {
+        printf("链表中有环\n");
+    }
+    else {
+        printf("链表中没有环\n");
+    }
+
+}
+int main()
 {
     test_push_front();
     test_push_back();
@@ -144,6 +168,6 @@ main()
     test_printList();
     test_destroyList();
     test_revers_List();
-
+    test_circle();
     return 0;
 }

@@ -23,7 +23,21 @@ void revers_List(Node *head)
 }
 
 // 判断链表中是否有环
-bool has_circle(Node *head);
+bool has_circle(Node *head)
+{
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;          // 慢指针移动一步  
+        fast = fast->next->next;    // 快指针移动两步  
+
+        if (slow == fast) {         // 如果相遇，说明有环  
+            return true;               // 返回 true 表示有环  
+        }
+    }
+    return false;                       // 返回 false 表示没有环  
+}
 
 // 合并有序链表, 输出新的链表, 注意输入为有序的链表, 输出链表也要是有序的, 这里规定为升序
 Node *merge_list(Node *list_1, Node *list_2);
