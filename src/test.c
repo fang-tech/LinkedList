@@ -159,6 +159,35 @@ void test_circle()
     }
 
 }
+
+void test_merge_list() {
+    Node *list_1 = NULL;
+    Node *list_2 = NULL;
+
+    // 第一个链表：1 -> 3 -> 5
+    push_back(&list_1, 1);
+    push_back(&list_1, 3);
+    push_back(&list_1, 5);
+
+    // 第二个链表：2 -> 4 -> 6
+    push_back(&list_2, 2);
+    push_back(&list_2, 4);
+    push_back(&list_2, 6);
+
+
+
+    // 合并
+    Node *merged_list = merge_list(list_1, list_2);
+
+
+    printf("合并后的链表应该输出: 1 2 3 4 5 6\n");
+    printf("实际输出: ");
+    printList(merged_list);
+
+    destroyList(&merged_list);
+}
+
+
 int main()
 {
     test_push_front();
@@ -169,5 +198,7 @@ int main()
     test_destroyList();
     test_revers_List();
     test_circle();
+    test_merge_list();
+
     return 0;
 }

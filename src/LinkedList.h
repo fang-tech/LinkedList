@@ -40,7 +40,36 @@ bool has_circle(Node *head)
 }
 
 // 合并有序链表, 输出新的链表, 注意输入为有序的链表, 输出链表也要是有序的, 这里规定为升序
-Node *merge_list(Node *list_1, Node *list_2);
+
+
+Node *merge_list(Node *list_1, Node *list_2) {
+    // 创建一个虚拟头节点
+    Node dummy;
+    Node *tail = &dummy;
+    dummy.next = NULL;
+    
+    // 合并两个有序链表
+    while (list_1 != NULL && list_2 != NULL) {
+        if (list_1->data <= list_2->data) {
+            tail->next = list_1;
+            list_1 = list_1->next;
+        } else {
+            tail->next = list_2;
+            list_2 = list_2->next;
+        }
+        tail = tail->next;
+    }
+    
+    // 连接剩余的部分
+    if (list_1 != NULL) {
+        tail->next = list_1;
+    } else {
+        tail->next = list_2;
+    }
+    
+    return dummy.next;
+}
+
 
 /*
     @author:    fung
